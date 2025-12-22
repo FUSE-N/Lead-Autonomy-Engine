@@ -8,10 +8,14 @@ import {
   Settings, 
   Menu,
   X,
-  Bot
+  Bot,
+  Share2,
+  ChevronDown,
+  FolderOpen
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface NavItem {
   icon: React.ElementType;
@@ -22,13 +26,21 @@ interface NavItem {
 const navItems: NavItem[] = [
   { icon: LayoutDashboard, label: "Command Center", href: "/" },
   { icon: MessageSquare, label: "Campaigns", href: "/campaigns" },
+  { icon: Share2, label: "Social Content", href: "/social-content" },
   { icon: Zap, label: "Automations", href: "/automations" },
   { icon: BarChart3, label: "Insights", href: "/insights" },
+];
+
+const leadsExamples = [
+  "SaaS Founders - Q1 Push",
+  "Webinar Invites - Fintech",
+  "Blog Post Promotion",
 ];
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLeadsOpen, setIsLeadsOpen] = useState(true);
 
   return (
     <div className="min-h-screen flex bg-background">
@@ -39,7 +51,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="h-full flex flex-col p-6">
+        <div className="h-full flex flex-col p-6 overflow-y-auto">
           <div className="flex items-center gap-2 mb-10">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
               <Bot className="w-5 h-5" />
@@ -47,7 +59,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <span className="text-xl font-bold font-heading tracking-tight">Leads</span>
           </div>
 
-          <nav className="space-y-2 flex-1">
+          <nav className="space-y-1 flex-1">
             {navItems.map((item) => {
               const isActive = location === item.href;
               return (
@@ -66,10 +78,33 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 </Link>
               );
             })}
+
+            {/* Leads Library Section */}
+            <div className="mt-8 pt-6 border-t border-border">
+              <Collapsible open={isLeadsOpen} onOpenChange={setIsLeadsOpen}>
+                <CollapsibleTrigger asChild>
+                  <button className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors">
+                    <FolderOpen className="w-4 h-4" />
+                    <span className="flex-1 text-left">Leads Library</span>
+                    <ChevronDown className={cn("w-3 h-3 transition-transform", isLeadsOpen ? "rotate-180" : "")} />
+                  </button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="space-y-1 mt-2 pl-2">
+                  {leadsExamples.map((lead, idx) => (
+                    <Link key={idx} href={`/leads/${idx}`}>
+                      <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer truncate">
+                        <div className="w-2 h-2 rounded-full bg-primary/40" />
+                        <span className="truncate">{lead}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
           </nav>
 
           <div className="pt-6 border-t border-border mt-auto">
-             <Link href="/settings">
+            <Link href="/settings">
               <div 
                 className={cn(
                   "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer",
@@ -83,7 +118,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
               </div>
             </Link>
             <div className="mt-4 flex items-center gap-3 px-3">
-              <div className="w-8 h-8 rounded-full bg-slate-200" />
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500" />
               <div className="text-xs">
                 <div className="font-medium">Workspace Admin</div>
                 <div className="text-muted-foreground">Pro Plan</div>

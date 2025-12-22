@@ -1,0 +1,128 @@
+Below is a refined and structured extension of the **Leads.ai** product overview, incorporating your requested features while maintaining architectural clarity and product coherence.
+
+---
+
+## Proposed Feature Enhancements for Leads.ai
+
+### 1. Social Media Handles & Account Linking (Settings Module)
+
+**Objective:**
+Enable users to centrally manage their brand’s social presence and allow the platform to act autonomously on their behalf.
+
+**Key Capabilities:**
+
+* Users can securely link multiple social media accounts from the **Settings** panel, including:
+
+  * Facebook (Pages & Groups)
+  * Instagram
+  * X (Twitter)
+  * LinkedIn (Personal & Company Pages)
+  * TikTok
+* OAuth-based authentication to ensure privacy, security, and revocable access.
+* Ability to select default platforms for posting or campaign execution.
+
+**Value:**
+
+* Eliminates repetitive manual posting.
+* Positions Leads.ai as a true “command-and-execute” system rather than a suggestion-only AI.
+
+---
+
+### 2. AI-Generated Social Media Content with One-Click Publishing
+
+**Objective:**
+Transform campaign intent into ready-to-publish social media content with minimal user effort.
+
+**Workflow:**
+
+1. User describes a product, offer, or campaign goal in natural language.
+2. Leads.ai automatically:
+
+   * Generates platform-optimized posts (tone, length, hashtags, emojis, CTA).
+   * Adapts content per platform (e.g., LinkedIn professional tone vs. Instagram promotional tone).
+3. User can:
+
+   * Preview posts per platform.
+   * Edit if desired.
+   * Click **“Share to All Linked Accounts”** or selectively post to chosen platforms.
+
+**Advanced Options (Optional / Phase 2):**
+
+* Auto-scheduling (best posting time per platform).
+* A/B content variants.
+* Engagement-driven content refinement (learning from likes, shares, CTR).
+
+**Value:**
+
+* Dramatically reduces time-to-market for campaigns.
+* Enables non-marketers to execute professional-grade social strategies.
+
+---
+
+### 3. Command Center Enhancement: “Leads Folder” System (Sidebar)
+
+**Objective:**
+Create a persistent, organized execution memory for all lead-generation tasks initiated by the user.
+
+**Sidebar Addition (Under Command Center):**
+**📁 Leads Library / Leads Folders**
+
+**Functionality:**
+
+* Automatically creates folders for:
+
+  * Campaign-based leads
+  * Platform-specific leads (Email, LinkedIn, Cold Outreach, Social)
+  * Custom user-defined lead requests
+* Each folder stores:
+
+  * Lead source
+  * AI-generated messaging
+  * Execution status (Pending, Running, Completed)
+  * Performance metrics (responses, conversions)
+  * Any follow-up tasks initiated by the AI
+
+**Example Use Case:**
+
+> “Find 500 SaaS founders in Germany and start LinkedIn outreach.”
+
+Leads.ai will:
+
+* Execute the task.
+* Store all results, messages, and progress inside a dedicated **Leads Folder**.
+* Allow the user to revisit, expand, or rerun the task later.
+
+**Value:**
+
+* Prevents loss of context across multiple campaigns.
+* Enables long-term lead asset accumulation.
+* Supports scalable and repeatable growth workflows.
+
+---
+
+### 4. Strategic Impact on Leads.ai Positioning
+
+With these additions, Leads.ai evolves into:
+
+* An **AI-powered social growth engine**
+* A **centralized outreach and publishing hub**
+* A **persistent execution memory system for leads**
+
+This clearly differentiates the platform from:
+
+* Basic social media schedulers
+* One-off AI content generators
+* CRM tools without autonomous execution
+
+---
+
+### Optional Next Step (Recommended)
+
+If you would like, the next logical progression would be to:
+
+* Redesign the **Sidebar Navigation Structure**
+* Define the **Settings → Social Accounts UI**
+* Specify the **Data Model for Leads Folders**
+* Or convert this into a **product requirement document (PRD)** for developers and investors
+
+Please indicate how you would like to proceed.
