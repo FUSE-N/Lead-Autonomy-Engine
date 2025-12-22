@@ -1,0 +1,132 @@
+Below is a clean, production-ready addition to the **Leads.ai** interaction model, extending the Command Center input experience while preserving simplicity and power.
+
+---
+
+## 8. Multimodal Command Input: File Upload & Voice Transcription
+
+### Objective
+
+Allow users to communicate with Leads.ai in multiple natural formats—text, documents, images, and voice—so the platform can extract intent, context, and data automatically.
+
+---
+
+### UI Enhancement: Command Textbox (Primary Input Field)
+
+**Location:**
+
+* Central Command Center textbox (global input field)
+
+**New Icons Added Inside the Textbox (Right-Aligned):**
+
+* 📎 **Upload Icon**
+* 🎙 **Microphone Icon**
+
+---
+
+## 8.1 File Upload Capability (📎 Upload Icon)
+
+### Supported File Types
+
+* **Documents:** PDF, DOC, DOCX, TXT
+* **Images:** PNG, JPG, JPEG
+* (Extensible to CSV, XLSX in later phases)
+
+### User Flow
+
+1. User clicks the **Upload icon**
+2. File picker opens
+3. Uploaded file appears as a chip/preview inside the textbox
+4. User enters or selects an action prompt, e.g.:
+
+   > “Extract leads from this document and start outreach”
+5. Leads.ai automatically:
+
+   * Parses and reads the file
+   * Extracts relevant information (text, tables, images)
+   * Infers intent and proposes next actions
+
+### AI Processing Behavior
+
+* **PDF/DOC:** Content extraction, summarization, entity detection
+* **Images:** OCR + semantic interpretation
+* **Cross-reference:** Combines uploaded content with user’s existing campaigns and leads
+
+### Value
+
+* Eliminates manual copy-paste
+* Enables document-driven workflows
+* Supports real-world business inputs (pitch decks, reports, lead lists)
+
+---
+
+## 8.2 Voice Input & Audio Transcription (🎙 Microphone Icon)
+
+### Functionality
+
+* Users can record voice commands directly within the textbox
+* Real-time waveform or recording indicator appears
+* One-tap start / stop recording
+
+### Processing Pipeline
+
+1. Audio is recorded securely
+2. Speech-to-text transcription occurs automatically
+3. Transcribed text appears in the textbox for review
+4. User can edit or submit immediately
+
+### Intelligent Enhancements
+
+* Language auto-detection
+* Punctuation and formatting
+* Intent recognition from conversational speech
+
+### Example Use Case
+
+> “Find e-commerce brands in the UK and generate LinkedIn outreach messages”
+
+Leads.ai converts this into structured execution tasks without requiring typing.
+
+### Value
+
+* Increases accessibility
+* Accelerates ideation and command execution
+* Enables hands-free operation for busy users
+
+---
+
+## 9. Unified Multimodal Intelligence
+
+Once files or voice input are added, Leads.ai treats them as **contextual memory** for the current task:
+
+* Uploaded files are linked to the resulting Leads Folder
+* Transcriptions are stored alongside campaign instructions
+* Users can reference previous uploads or recordings in follow-up commands
+
+This ensures continuity, traceability, and auditability across campaigns.
+
+---
+
+## Strategic Outcome
+
+With this enhancement, the Command Center becomes:
+
+* A **multimodal AI console**
+* A **single source of truth** for instructions, assets, and intent
+* A frictionless interface for both technical and non-technical users
+
+Leads.ai now supports:
+
+> *Type it. Upload it. Say it. Execute it.*
+
+---
+
+### Recommended Next Step
+
+If you wish, the next step would be to:
+
+* Define **error states & file size limits**
+* Design **upload previews and transcription UI states**
+* Specify **backend processing flow (OCR, ASR, parsing)**
+* Or convert this into a **developer-ready UI/UX specification**
+
+Please indicate how you would like to proceed.

@@ -1,0 +1,141 @@
+Below is a structured and product-ready extension to **Leads.ai**, integrating the two new interface and intelligence features while maintaining consistency with the Command Center and autonomous execution philosophy.
+
+---
+
+## 5. Potential Clients Discovery: Sliding Card Interface
+
+### Objective
+
+Provide users with a continuously updated, AI-curated view of potential customers they can immediately target with their business, product, or services.
+
+### UI Placement
+
+* **Primary Location:** Main dashboard body (below the header, above analytics or campaign summaries)
+* **Secondary Access:** Click-through from Command Center → Leads Library
+
+### Component: “Potential Clients” Card Slider
+
+**Design Characteristics:**
+
+* Horizontally scrollable slideshow of smart cards
+* Auto-scroll with manual swipe/arrow navigation
+* Responsive across desktop and mobile views
+
+**Each Card Displays:**
+
+* Client or company name
+* Industry / niche
+* Location (country / region)
+* Estimated company size or customer profile
+* AI-generated “Why this is a good fit” insight
+* Suggested outreach channel (Email, LinkedIn, Social, Website)
+* Action buttons:
+
+  * **Add to Leads Folder**
+  * **Start Outreach**
+  * **Generate Message**
+
+**AI Intelligence Layer:**
+
+* Cards are dynamically generated based on:
+
+  * User’s product description
+  * Previous campaigns
+  * Engagement and conversion history
+* Continuously refreshed as the system learns user preferences and performance.
+
+**Value:**
+
+* Eliminates guesswork in lead targeting
+* Turns discovery into immediate execution
+* Encourages proactive growth actions directly from the dashboard
+
+---
+
+## 6. Discovery & Learning System: Progressive Insight Snap
+
+### Objective
+
+Guide users to fully unlock the platform’s capabilities through contextual education, without overwhelming them.
+
+### UI Placement
+
+* **Top-right corner of the header bar**
+* Represented by a **Discovery icon** (e.g., compass or spark icon)
+
+---
+
+### Component: Discovery Progress Snap (20% → 100%)
+
+**Interaction Behavior:**
+
+* Clicking the Discovery icon opens a slide-in or pop-up panel
+* Panel visually shows a progress indicator with milestones:
+
+  * 20%
+  * 40%
+  * 60%
+  * 80%
+  * 100%
+
+**At Each Level, the Snap Provides:**
+
+* Short, actionable tips
+* Platform-specific usage recommendations
+* Context-aware tutorials based on user activity
+* Curated articles and micro-guides (2–3 minutes read)
+
+**Examples:**
+
+* **20%:**
+  “How to describe your product for better AI results”
+* **40%:**
+  “Linking social accounts to enable one-click publishing”
+* **60%:**
+  “Using Leads Folders to scale multiple campaigns”
+* **80%:**
+  “Optimizing outreach with AI-driven personalization”
+* **100%:**
+  “Advanced autonomous workflows and growth automation”
+
+**Smart Adaptation:**
+
+* Progress advances based on:
+
+  * Feature usage
+  * Completed actions (e.g., linking accounts, launching campaigns)
+  * Time spent engaging with platform features
+
+**Value:**
+
+* Reduces user churn
+* Accelerates time-to-value
+* Creates a guided mastery path instead of static documentation
+
+---
+
+## 7. Strategic Impact on Platform Experience
+
+With these additions, Leads.ai now delivers:
+
+* **Continuous client discovery**, not static lead lists
+* **Actionable insights at the moment of intent**
+* **Built-in user education**, eliminating the need for external tutorials
+* A dashboard that feels **alive, intelligent, and progressively empowering**
+
+This positions Leads.ai as:
+
+> *An autonomous growth operating system, not merely a marketing tool.*
+
+---
+
+### Recommended Next Steps
+
+If you approve this direction, the logical continuation would be to:
+
+1. Define the **data schema** for Potential Client Cards
+2. Design the **interaction states** (hover, action, expansion)
+3. Map **Discovery Snap content** to onboarding and retention metrics
+4. Translate this into a **UI component specification** for frontend implementation
+
+Please indicate how you would like to proceed.
