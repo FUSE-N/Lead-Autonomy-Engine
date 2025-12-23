@@ -1,0 +1,125 @@
+Below is a precise and UI-ready enhancement to the **Leads.ai navigation system**, aligned with the clean, executive experience we have been defining.
+
+---
+
+## 6. Collapsible Sidebar (Tab Bar) Enhancement
+
+### Objective
+
+Give users full control over screen real estate while maintaining fast access to platform navigation.
+
+---
+
+## Sidebar Behavior & Control
+
+### Placement of Collapse Control
+
+* A **collapse / expand button** is placed **immediately to the right of the logo icon** at the top of the sidebar.
+* The button is visually subtle but clearly discoverable.
+* Recommended iconography:
+
+  * Collapsed state: ▶ (or chevron-right)
+  * Expanded state: ◀ (or chevron-left)
+
+---
+
+## Sidebar States
+
+### 1. Expanded State (Default)
+
+* Full-width sidebar
+* Displays:
+
+  * Logo
+  * Navigation labels (Command Center, Campaigns, Automation, Insights, Leads Library, etc.)
+  * Section dividers where appropriate
+* Ideal for first-time users and exploration
+
+---
+
+### 2. Collapsed State
+
+* Sidebar reduces to a slim vertical bar
+* Displays:
+
+  * Logo (icon-only)
+  * Navigation icons only
+* On hover:
+
+  * Tooltip reveals full page name
+* On click:
+
+  * Navigates instantly without expanding
+
+**Behavioral Notes:**
+
+* The collapse state persists across sessions (saved per user)
+* Smooth animation (150–250ms) for premium feel
+
+---
+
+## Interaction Details
+
+* Clicking the button:
+
+  * Toggles between expanded and collapsed states
+* Keyboard accessibility:
+
+  * Shortcut (e.g., `Ctrl + B`) for power users
+* Responsive logic:
+
+  * Auto-collapses on smaller screens
+  * Manual override always respected
+
+---
+
+## UX & Strategic Impact
+
+This enhancement:
+
+* Reduces cognitive load
+* Maximizes workspace for the Command Center and campaigns
+* Supports both exploratory and focused work modes
+* Aligns Leads.ai with modern enterprise-grade platforms (e.g., Notion, Linear, GitHub)
+
+---
+
+## Visual Hierarchy Summary
+
+```
+[ Logo ] [ ◀ ]     ← Collapse / Expand Button
+-----------------
+| Command Center |
+| Campaigns      |
+| Automation     |
+| Insights       |
+| Leads Library  |
+| Agent Activity |
+| Performance    |
+-----------------
+```
+
+---
+
+## Final Result
+
+With this change, Leads.ai navigation becomes:
+
+* Minimal when needed
+* Informative when expanded
+* User-controlled at all times
+
+This completes the foundational UX system for Leads.ai.
+
+---
+
+### Recommended Next Step
+
+If you wish, we can now:
+
+* Define exact iconography and spacing
+* Create sidebar animation rules
+* Map sidebar behavior to mobile and tablet breakpoints
+* Produce a full **navigation UX specification**
+
+Please advise on how you would like to proceed.

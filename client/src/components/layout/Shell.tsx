@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { 
   LayoutDashboard, 
@@ -11,7 +11,9 @@ import {
   Bot,
   Share2,
   ChevronDown,
-  FolderOpen
+  FolderOpen,
+  ChevronRight,
+  Activity
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -28,6 +30,10 @@ const navItems: NavItem[] = [
   { icon: MessageSquare, label: "Campaigns", href: "/campaigns" },
   { icon: Share2, label: "Social Content", href: "/social-content" },
   { icon: Zap, label: "Automations", href: "/automations" },
+];
+
+const sidebarPages: NavItem[] = [
+  { icon: Activity, label: "Agent Activity", href: "/agent-activity" },
   { icon: BarChart3, label: "Insights", href: "/insights" },
 ];
 
@@ -41,89 +47,170 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLeadsOpen, setIsLeadsOpen] = useState(true);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  
+  // Load sidebar state from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("sidebarCollapsed");
+    if (saved) setIsSidebarCollapsed(JSON.parse(saved));
+  }, []);
+
+  const toggleSidebar = () => {
+    const newState = !isSidebarCollapsed;
+    setIsSidebarCollapsed(newState);
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(newState));
+  };
 
   return (
     <div className="min-h-screen flex bg-background">
       {/* Sidebar */}
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 bg-card border-r border-border transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static",
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed inset-y-0 left-0 z-50 bg-card border-r border-border transition-all duration-300 ease-in-out lg:translate-x-0 lg:static",
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
+          isSidebarCollapsed ? "w-20" : "w-64"
         )}
       >
-        <div className="h-full flex flex-col p-6 overflow-y-auto">
-          <div className="flex items-center gap-2 mb-10">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
-              <Bot className="w-5 h-5" />
+        <div className="h-full flex flex-col p-4 overflow-y-auto">
+          {/* Header with Logo and Collapse Button */}
+          <div className="flex items-center justify-between gap-2 mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground flex-shrink-0">
+                <Bot className="w-5 h-5" />
+              </div>
+              {!isSidebarCollapsed && (
+                <span className="text-xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
+              )}
             </div>
-            <span className="text-xl font-bold font-heading tracking-tight">Leads</span>
+            
+            {/* Collapse Button */}
+            <button 
+              onClick={toggleSidebar}
+              className="hidden lg:flex items-center justify-center w-6 h-6 rounded hover:bg-muted transition-colors flex-shrink-0"
+              title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {isSidebarCollapsed ? (
+                <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              ) : (
+                <ChevronRight className="w-4 h-4 text-muted-foreground rotate-180" />
+              )}
+            </button>
           </div>
 
+          {/* Primary Navigation */}
           <nav className="space-y-1 flex-1">
             {navItems.map((item) => {
               const isActive = location === item.href;
+              const Icon = item.icon;
               return (
                 <Link key={item.href} href={item.href}>
-                  <div 
+                  <button 
                     className={cn(
-                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer",
+                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
                       isActive 
                         ? "bg-primary/10 text-primary" 
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
+                    title={isSidebarCollapsed ? item.label : undefined}
                   >
-                    <item.icon className="w-4 h-4" />
-                    {item.label}
-                  </div>
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    {!isSidebarCollapsed && <span>{item.label}</span>}
+                  </button>
                 </Link>
               );
             })}
+          </nav>
 
-            {/* Leads Library Section */}
-            <div className="mt-8 pt-6 border-t border-border">
+          {/* Sidebar Pages Section */}
+          {!isSidebarCollapsed && (
+            <div className="space-y-1 pb-6 border-b border-border">
+              {sidebarPages.map((item) => {
+                const isActive = location === item.href;
+                const Icon = item.icon;
+                return (
+                  <Link key={item.href} href={item.href}>
+                    <button 
+                      className={cn(
+                        "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
+                        isActive 
+                          ? "bg-primary/10 text-primary" 
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      )}
+                    >
+                      <Icon className="w-4 h-4 flex-shrink-0" />
+                      <span>{item.label}</span>
+                    </button>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Leads Library Section */}
+          {!isSidebarCollapsed && (
+            <div className="space-y-2 pb-6 border-b border-border">
               <Collapsible open={isLeadsOpen} onOpenChange={setIsLeadsOpen}>
                 <CollapsibleTrigger asChild>
                   <button className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors">
-                    <FolderOpen className="w-4 h-4" />
+                    <FolderOpen className="w-4 h-4 flex-shrink-0" />
                     <span className="flex-1 text-left">Leads Library</span>
-                    <ChevronDown className={cn("w-3 h-3 transition-transform", isLeadsOpen ? "rotate-180" : "")} />
+                    <ChevronDown className={cn("w-3 h-3 transition-transform flex-shrink-0", isLeadsOpen ? "rotate-180" : "")} />
                   </button>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="space-y-1 mt-2 pl-2">
                   {leadsExamples.map((lead, idx) => (
                     <Link key={idx} href={`/leads/${idx}`}>
-                      <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer truncate">
-                        <div className="w-2 h-2 rounded-full bg-primary/40" />
+                      <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer truncate w-full text-left">
+                        <div className="w-2 h-2 rounded-full bg-primary/40 flex-shrink-0" />
                         <span className="truncate">{lead}</span>
-                      </div>
+                      </button>
                     </Link>
                   ))}
                 </CollapsibleContent>
               </Collapsible>
             </div>
-          </nav>
+          )}
 
-          <div className="pt-6 border-t border-border mt-auto">
-            <Link href="/settings">
-              <div 
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer",
-                  location === "/settings"
-                    ? "bg-primary/10 text-primary" 
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-              >
-                <Settings className="w-4 h-4" />
-                Settings
-              </div>
-            </Link>
-            <div className="mt-4 flex items-center gap-3 px-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500" />
-              <div className="text-xs">
-                <div className="font-medium">Workspace Admin</div>
-                <div className="text-muted-foreground">Pro Plan</div>
-              </div>
-            </div>
+          {/* Settings & Profile */}
+          <div className="pt-4 border-t border-border mt-auto space-y-4">
+            {!isSidebarCollapsed ? (
+              <>
+                <Link href="/settings">
+                  <button 
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
+                      location === "/settings"
+                        ? "bg-primary/10 text-primary" 
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    )}
+                  >
+                    <Settings className="w-4 h-4 flex-shrink-0" />
+                    Settings
+                  </button>
+                </Link>
+                <div className="flex items-center gap-3 px-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex-shrink-0" />
+                  <div className="text-xs min-w-0">
+                    <div className="font-medium truncate">Workspace Admin</div>
+                    <div className="text-muted-foreground truncate">Pro Plan</div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Link href="/settings">
+                <button 
+                  className={cn(
+                    "flex items-center justify-center w-8 h-8 rounded-lg transition-colors",
+                    location === "/settings"
+                      ? "bg-primary/10 text-primary" 
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  )}
+                  title="Settings"
+                >
+                  <Settings className="w-4 h-4" />
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </aside>

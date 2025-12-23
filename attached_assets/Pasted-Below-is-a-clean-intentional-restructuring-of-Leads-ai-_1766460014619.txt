@@ -1,0 +1,238 @@
+Below is a clean, intentional restructuring of **Leads.ai**, aligning the platform with a focused, executive-grade experience while improving clarity, depth, and scalability.
+
+---
+
+## 1. Command Center Page — Refocused and Simplified
+
+### Strategic Intent
+
+The Command Center becomes a **pure mission-driven control interface**, not a dashboard cluttered with analytics or previews. Its sole purpose is to capture intent and trigger autonomous execution.
+
+---
+
+### What Is Removed from the Command Center
+
+The following sections are **completely removed** from the Command Center page:
+
+* Potential Clients
+* Active Agent Activity
+* Performance Overview
+* Recent Campaigns
+
+These elements are not eliminated from the platform; they are **relocated to dedicated sidebar pages**, where they can be explored with greater depth and context.
+
+---
+
+### New Command Center Structure
+
+#### Header Section
+
+* Personalized greeting:
+
+  > **“Welcome back, {User Name}”**
+* Mission prompt (primary headline):
+
+  > **“What’s our mission today?”**
+* Supporting subtext:
+
+  > *I’m ready to research audiences, draft content, or launch outreach campaigns autonomously.*
+
+This immediately frames the platform as an intelligent partner, not a tool.
+
+---
+
+#### Core Interaction Area
+
+* **Primary Command Textbox**
+
+  * Multimodal input (text, upload, microphone)
+  * Clear visual priority
+* **Notification Icon**
+
+  * Campaign updates
+  * Agent status alerts
+  * Execution completions
+
+That is the entire page.
+
+**Result:**
+A calm, confident, executive interface focused entirely on action and intent.
+
+---
+
+## 2. Sidebar Page Reorganization (Where the “Removed” Sections Go)
+
+Each removed section is upgraded into a **full-featured insight page**, accessible via the sidebar.
+
+---
+
+### A. Insights & Analysis Page (New)
+
+This page consolidates intelligence previously scattered across the Command Center.
+
+**Sections Include:**
+
+* Audience insights (demographics, firmographics, intent signals)
+* Market opportunity analysis
+* AI-generated recommendations:
+
+  * Best channels to pursue
+  * Underperforming segments
+  * Suggested next campaigns
+* Trend summaries and learning feedback from past executions
+
+**Purpose:**
+Strategic thinking, review, and optimization — not execution.
+
+---
+
+### B. Leads Library Page (Existing, Expanded)
+
+Holds:
+
+* All leads folders
+* Campaign-generated contacts
+* Enriched lead profiles
+* Status, history, and follow-ups
+
+This becomes the **system of record** for growth assets.
+
+---
+
+### C. Agent Activity Page (Dedicated)
+
+Instead of a small widget, this becomes a transparent execution log.
+
+**Includes:**
+
+* Which agents are running
+* Tasks in progress
+* Completed actions
+* Errors or manual intervention requests
+
+This reinforces trust in automation.
+
+---
+
+### D. Performance & Analytics Page
+
+A focused analytics environment, including:
+
+* Outreach performance
+* Conversion metrics
+* Engagement trends
+* Campaign comparisons
+* ROI estimates
+
+This page is consulted intentionally, not passively.
+
+---
+
+## 3. Campaigns Page — Structured, Powerful, Clear
+
+### Objective
+
+Transform the Campaigns page into a **campaign command and management hub**, not a summary list.
+
+---
+
+### Campaigns Page Structure
+
+**Top Section:**
+
+* “Create New Campaign” (Primary CTA)
+* Campaign type selector:
+
+  * Content
+  * Outreach
+  * Social
+  * Multichannel
+
+**Campaign Cards Display:**
+
+* Campaign name and goal
+* Target audience
+* Channels used
+* Status (Draft, Active, Completed)
+* Performance snapshot
+* Actions:
+
+  * Edit
+  * Duplicate
+  * Pause
+  * Expand
+
+**Inside a Campaign:**
+
+* AI-generated strategy
+* Content variants
+* Audience definitions
+* Execution timeline
+* Results and learning feedback
+
+---
+
+## 4. Automation Page — The Autonomy Engine
+
+### Objective
+
+Give users full visibility and control over autonomous workflows without complexity.
+
+---
+
+### Automation Page Structure
+
+**Automation Overview**
+
+* List of active automations
+* Triggers and conditions
+* Frequency and scope
+
+**Automation Builder**
+
+* Natural-language automation setup:
+
+  > “Every week, find new SaaS founders in Europe and start LinkedIn outreach.”
+* AI translates this into:
+
+  * Trigger
+  * Action
+  * Channel
+  * Constraints
+
+**Controls**
+
+* Enable / disable
+* Edit logic
+* Review execution history
+
+**Outcome:**
+Users feel empowered, not overwhelmed, by automation.
+
+---
+
+## 5. Overall UX Philosophy After Changes
+
+With this restructuring:
+
+* **Command Center** = Intent & Execution
+* **Sidebar Pages** = Insight, Control, Review
+* **Campaigns** = Strategy + Execution
+* **Automation** = Scale & Continuity
+
+Leads.ai now behaves like:
+
+> *An autonomous growth operating system with a clean executive interface.*
+
+---
+
+## Recommended Next Steps
+
+If you are ready, the next logical step would be to:
+
+1. Finalize sidebar navigation labels and order
+2. Define wireframe-level layouts for each page
+3. Translate this into a **UI specification** for frontend implementation
+4. Convert into a **PRD or investor-ready product narrative**
+
+Please indicate how you would like to proceed.

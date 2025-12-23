@@ -8,6 +8,10 @@ import Dashboard from "@/pages/dashboard";
 import Settings from "@/pages/settings";
 import SocialContent from "@/pages/social-content";
 import LeadsFolder from "@/pages/leads-folder";
+import Campaigns from "@/pages/campaigns";
+import Insights from "@/pages/insights";
+import AgentActivity from "@/pages/agent-activity";
+import Automations from "@/pages/automations";
 
 function Router() {
   return (
@@ -16,6 +20,10 @@ function Router() {
       <Route path="/settings" component={Settings} />
       <Route path="/social-content" component={SocialContent} />
       <Route path="/leads/:id" component={LeadsFolder} />
+      <Route path="/campaigns" component={Campaigns} />
+      <Route path="/insights" component={Insights} />
+      <Route path="/agent-activity" component={AgentActivity} />
+      <Route path="/automations" component={Automations} />
       <Route component={NotFound} />
     </Switch>
   );
