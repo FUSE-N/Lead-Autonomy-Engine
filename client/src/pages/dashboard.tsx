@@ -3,7 +3,7 @@ import { CommandInputEnhanced } from "@/components/dashboard/CommandInputEnhance
 import { DiscoverySnap } from "@/components/dashboard/DiscoverySnap";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Compass } from "lucide-react";
+import { Compass, User } from "lucide-react";
 
 export default function Dashboard() {
   const [isDiscoveryOpen, setIsDiscoveryOpen] = useState(false);
@@ -47,16 +47,29 @@ export default function Dashboard() {
       {/* Discovery Snap */}
       <DiscoverySnap isOpen={isDiscoveryOpen} onOpenChange={setIsDiscoveryOpen} currentProgress={28} />
 
-      {/* Discovery Button - Floating in top-right */}
-      <Button 
-        size="icon" 
-        variant="ghost"
-        onClick={() => setIsDiscoveryOpen(true)}
-        className="fixed bottom-6 right-6 h-12 w-12 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90 z-40"
-        title="Open discovery and learning path"
-      >
-        <Compass className="w-5 h-5" />
-      </Button>
+      {/* Floating Action Buttons - Top Right */}
+      <div className="fixed top-6 right-6 flex gap-3 z-40">
+        {/* Profile Button */}
+        <Button 
+          size="icon" 
+          variant="outline"
+          className="h-10 w-10 rounded-full shadow-sm hover:bg-accent"
+          title="User profile"
+        >
+          <User className="w-4 h-4" />
+        </Button>
+        
+        {/* Discovery Button */}
+        <Button 
+          size="icon" 
+          variant="default"
+          onClick={() => setIsDiscoveryOpen(true)}
+          className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
+          title="Open discovery and learning path"
+        >
+          <Compass className="w-4 h-4" />
+        </Button>
+      </div>
     </>
   );
 }
