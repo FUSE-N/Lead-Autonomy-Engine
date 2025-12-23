@@ -1,0 +1,119 @@
+Yes—this is both **recommended** and **correct** for the type of platform Leads.ai is becoming. Below is the precise, implementation-ready definition.
+
+---
+
+## Fixed Sidebar with Independent Page Scrolling
+
+### Objective
+
+Ensure the sidebar remains **fully fixed and visible at all times**, while only the main content area scrolls vertically. This preserves orientation, improves efficiency, and reinforces Leads.ai as an executive-grade control system.
+
+---
+
+## Core Behavior Definition
+
+### Sidebar (Fixed)
+
+* **Position:** Fixed (or sticky with full viewport height)
+* **Height:** 100vh (full viewport height)
+* **Behavior on Scroll:**
+
+  * Does **not move**
+  * Does **not scroll**
+* **Contents Always Visible:**
+
+  * Logo
+  * Collapse / expand button (right of logo)
+  * Navigation icons / labels
+
+The sidebar functions as a **permanent control rail**.
+
+---
+
+### Main Content Area (Scrollable)
+
+* All pages (Command Center, Campaigns, Automation, Insights, etc.) scroll **independently** of the sidebar.
+* Vertical scrolling affects **only**:
+
+  * Page body
+  * Cards
+  * Tables
+  * Analytics
+* Header (top bar) may be:
+
+  * Sticky (recommended), or
+  * Static (acceptable)
+
+---
+
+## Layout Architecture (Conceptual)
+
+```
+| Sidebar (fixed) |  Main Content (scrollable) |
+|                 |  ┌──────────────────────┐ |
+|  Logo   ◀       |  | Header / Toolbar     | |
+|  Nav Items      |  ├──────────────────────┤ |
+|                 |  | Page Content         | |
+|                 |  | (scrolls vertically) | |
+|                 |  |                      | |
+```
+
+---
+
+## Collapsed Sidebar Behavior (Still Fixed)
+
+* When collapsed:
+
+  * Sidebar remains fixed
+  * Width reduces
+  * Icons remain visible
+* Main content automatically expands to use freed space
+* Scrolling behavior remains unchanged
+
+---
+
+## UX Advantages
+
+This approach ensures:
+
+* Zero loss of navigation context
+* Faster switching between pages
+* No accidental disorientation during long scrolls
+* Cleaner mental model for users
+
+It also aligns Leads.ai with best-in-class platforms such as:
+
+* Notion
+* Linear
+* Stripe Dashboard
+* GitHub
+
+---
+
+## Accessibility & Performance Notes
+
+* Sidebar should not trap scroll focus
+* Keyboard navigation remains uninterrupted
+* Avoid nested scrollbars inside the sidebar
+* Use smooth transitions for collapse/expand only
+
+---
+
+## Final UX Principle
+
+> **Navigation is fixed. Execution scrolls.**
+
+This principle is now consistent across Leads.ai.
+
+---
+
+### Recommended Next Step
+
+If you approve, the next steps would be:
+
+* Define header (top bar) sticky vs static behavior
+* Specify responsive behavior for tablets and mobile
+* Create layout constraints for frontend implementation
+* Translate into a **developer-ready layout spec**
+
+Please confirm how you would like to proceed.
