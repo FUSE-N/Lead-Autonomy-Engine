@@ -82,18 +82,16 @@ export function Shell({ children }: { children: React.ReactNode }) {
               )}
             </div>
             
-            {/* Sidebar Toggle Button */}
-            <button 
-              onClick={toggleSidebar}
-              className="hidden lg:flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
-              title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-            >
-              {isSidebarCollapsed ? (
+            {/* Sidebar Toggle Button - Only visible when collapsed */}
+            {isSidebarCollapsed && (
+              <button 
+                onClick={toggleSidebar}
+                className="hidden lg:flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
+                title="Expand sidebar"
+              >
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-muted-foreground rotate-180" />
-              )}
-            </button>
+              </button>
+            )}
           </div>
 
           {/* Primary Navigation */}
