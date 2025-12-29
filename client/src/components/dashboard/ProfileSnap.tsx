@@ -30,7 +30,7 @@ export function ProfileSnap({
       items: [
         { icon: Settings, label: "Account Settings", path: "/settings" },
         { icon: Shield, label: "Security & Privacy", path: null },
-        { icon: CreditCard, label: "Billing & Plans", path: null },
+        { icon: CreditCard, label: "Billing & Plans", path: "/pricing" },
       ]
     },
     {
