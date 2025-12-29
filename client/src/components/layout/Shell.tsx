@@ -335,7 +335,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         {/* Mobile menu trigger - absolute positioned since header is removed */}
         <button 
           onClick={() => setIsMobileMenuOpen(true)}
-          className="md:hidden absolute top-6 left-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm"
+          className="md:hidden absolute top-6 left-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm active:scale-95 transition-transform"
         >
           <PanelRightClose className="w-5 h-5 text-muted-foreground" />
         </button>
