@@ -67,7 +67,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* Sidebar - Fixed Position */}
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-50 bg-card border-r border-border transition-all duration-300 ease-in-out hidden lg:flex flex-col",
+          "fixed inset-y-0 left-0 z-50 bg-card border-r border-border transition-all duration-300 ease-in-out hidden md:flex flex-col",
           isSidebarCollapsed ? "w-20" : "w-64"
         )}
       >
@@ -218,7 +218,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* Mobile Sidebar */}
       <aside 
         className={cn(
-          "fixed inset-0 z-40 bg-card lg:hidden transition-all duration-300",
+          "fixed inset-0 z-50 bg-card md:hidden transition-all duration-300",
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full",
           isSidebarCollapsed ? "w-20" : "w-64"
         )}
@@ -370,7 +370,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 lg:hidden"
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -378,12 +378,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* Main Content - Scrollable, Fixed Sidebar Content Space */}
       <main className={cn(
         "flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative",
-        isSidebarCollapsed ? "lg:ml-20" : "lg:ml-64"
+        isSidebarCollapsed ? "md:ml-20" : "md:ml-64"
       )}>
         {/* Mobile menu trigger - absolute positioned since header is removed */}
         <button 
           onClick={() => setIsMobileMenuOpen(true)}
-          className="lg:hidden absolute top-6 left-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm"
+          className="md:hidden absolute top-6 left-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm"
         >
           <Menu className="w-5 h-5" />
         </button>

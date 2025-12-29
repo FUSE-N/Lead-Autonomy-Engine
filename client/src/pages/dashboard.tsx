@@ -48,7 +48,7 @@ export default function Dashboard() {
       <DiscoverySnap isOpen={isDiscoveryOpen} onOpenChange={setIsDiscoveryOpen} currentProgress={28} />
 
       {/* Floating Action Buttons - Top Area */}
-      <div className="fixed top-6 left-6 lg:left-auto right-6 flex items-center justify-between lg:justify-end gap-3 z-40 w-[calc(100%-3rem)] lg:w-auto">
+      <div className="fixed top-6 left-6 md:left-auto right-6 flex items-center justify-between md:justify-end gap-3 z-40 w-[calc(100%-3rem)] md:w-auto">
         <div className="flex items-center gap-3 ml-auto">
           {/* Profile Button */}
           <Button 
