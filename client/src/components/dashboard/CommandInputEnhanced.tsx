@@ -105,19 +105,19 @@ export function CommandInputEnhanced({
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
               placeholder="Describe your goal (e.g., 'Find SaaS founders in London and email them about our new API')"
-              className="w-full min-h-[80px] bg-transparent border-none resize-none focus:ring-0 text-lg placeholder:text-muted-foreground/50 font-medium"
+              className="w-full min-h-[80px] md:min-h-[120px] bg-transparent border-none resize-none focus:ring-0 text-base md:text-lg placeholder:text-muted-foreground/50 font-medium"
               style={{ outline: 'none' }}
             />
           </div>
           
-          <div className="flex items-center justify-between px-4 pb-4">
-            <div className="flex items-center gap-1">
+          <div className="flex flex-col md:flex-row md:items-center justify-between px-4 pb-4 gap-4">
+            <div className="flex items-center gap-1 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
               <Button 
                 type="button" 
                 variant="ghost" 
                 size="sm"
                 onClick={() => fileInputRef.current?.click()}
-                className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-xs"
+                className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-[10px] md:text-xs flex-shrink-0"
                 title="Upload PDF, DOC, or image"
               >
                 <Paperclip className="w-3.5 h-3.5 mr-1.5" />
@@ -130,7 +130,7 @@ export function CommandInputEnhanced({
                 size="sm"
                 onClick={handleVoiceRecord}
                 className={cn(
-                  "rounded-full h-8 px-3 text-xs transition-colors",
+                  "rounded-full h-8 px-3 text-[10px] md:text-xs transition-colors flex-shrink-0",
                   isRecording 
                     ? "text-destructive hover:bg-destructive/10" 
                     : "text-muted-foreground hover:text-primary hover:bg-primary/10"
@@ -145,7 +145,7 @@ export function CommandInputEnhanced({
                 type="button" 
                 variant="ghost" 
                 size="sm"
-                className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-xs"
+                className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-[10px] md:text-xs flex-shrink-0"
               >
                 <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                 Templates
@@ -165,8 +165,8 @@ export function CommandInputEnhanced({
               type="submit" 
               disabled={!value.trim()}
               className={cn(
-                "rounded-xl transition-all duration-300",
-                value.trim() ? "translate-x-0 opacity-100" : "translate-x-2 opacity-50"
+                "rounded-xl transition-all duration-300 w-full md:w-auto",
+                value.trim() ? "translate-x-0 opacity-100" : "md:translate-x-2 opacity-50"
               )}
             >
               Start Campaign
