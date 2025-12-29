@@ -73,15 +73,15 @@ export function Shell({ children }: { children: React.ReactNode }) {
       >
         <div className="h-full flex flex-col p-4 overflow-y-auto">
           {/* Header with Logo and Collapse Button */}
-          <div className="flex items-center justify-between gap-2 mb-8">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground flex-shrink-0">
-                <Bot className="w-5 h-5" />
-              </div>
-              {!isSidebarCollapsed && (
+          <div className={cn("flex items-center gap-2 mb-8", isSidebarCollapsed ? "justify-center" : "justify-between")}>
+            {!isSidebarCollapsed && (
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground flex-shrink-0">
+                  <Bot className="w-5 h-5" />
+                </div>
                 <span className="text-xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
-              )}
-            </div>
+              </div>
+            )}
             
             {/* Sidebar Toggle Button */}
             <button 
