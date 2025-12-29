@@ -232,13 +232,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <span className="text-2xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
             </div>
             
-            {/* Close Button */}
+            {/* Close Button for Mobile */}
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
               title="Close menu"
             >
-              <PanelLeftClose className="w-5 h-5 text-muted-foreground" />
+              <PanelRightClose className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
 
