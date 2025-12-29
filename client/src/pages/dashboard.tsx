@@ -48,12 +48,12 @@ export default function Dashboard() {
       <DiscoverySnap isOpen={isDiscoveryOpen} onOpenChange={setIsDiscoveryOpen} currentProgress={28} />
 
       {/* Floating Action Buttons - Top Right */}
-      <div className="fixed top-6 right-6 flex gap-3 z-40">
+      <div className="fixed top-6 right-6 flex items-center gap-3 z-40">
         {/* Profile Button */}
         <Button 
           size="icon" 
           variant="outline"
-          className="h-10 w-10 rounded-full shadow-sm hover:bg-accent"
+          className="h-10 w-10 rounded-full shadow-sm hover:bg-accent flex items-center justify-center"
           title="User profile"
         >
           <User className="w-4 h-4" />
@@ -64,7 +64,7 @@ export default function Dashboard() {
           size="icon" 
           variant="default"
           onClick={() => setIsDiscoveryOpen(true)}
-          className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
+          className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center"
           title="Open discovery and learning path"
         >
           <Compass className="w-4 h-4" />
