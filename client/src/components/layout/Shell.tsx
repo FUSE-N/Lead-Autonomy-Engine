@@ -82,10 +82,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
               )}
             </div>
             
-            {/* Collapse Button */}
+            {/* Sidebar Toggle Button */}
             <button 
               onClick={toggleSidebar}
-              className="hidden lg:flex items-center justify-center w-6 h-6 rounded hover:bg-muted transition-colors flex-shrink-0"
+              className="hidden lg:flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
               title={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               {isSidebarCollapsed ? (
