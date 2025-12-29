@@ -218,35 +218,32 @@ export function Shell({ children }: { children: React.ReactNode }) {
       {/* Mobile Sidebar */}
       <aside 
         className={cn(
-          "fixed inset-0 z-50 bg-card md:hidden transition-all duration-300",
-          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full",
-          isSidebarCollapsed ? "w-20" : "w-64"
+          "fixed inset-0 z-50 bg-card md:hidden transition-all duration-500 ease-in-out",
+          isMobileMenuOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         )}
       >
-        <div className="h-full flex flex-col p-4 overflow-y-auto">
-          {/* Header with Logo and Collapse Button */}
-          <div className={cn("flex items-center gap-2 mb-8", isSidebarCollapsed ? "justify-center" : "justify-between")}>
-            {!isSidebarCollapsed && (
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground flex-shrink-0">
-                  <Bot className="w-5 h-5" />
-                </div>
-                <span className="text-xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
+        <div className="h-full flex flex-col p-6 overflow-y-auto">
+          {/* Header with Logo and Close Button */}
+          <div className="flex items-center justify-between gap-4 mb-10">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-foreground flex-shrink-0 shadow-lg shadow-primary/20">
+                <Bot className="w-6 h-6" />
               </div>
-            )}
+              <span className="text-2xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
+            </div>
             
-            {/* Sidebar Toggle Button */}
+            {/* Close Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
+              className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
               title="Close menu"
             >
-              <PanelLeftClose className="w-4 h-4 text-muted-foreground" />
+              <PanelLeftClose className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
 
           {/* Primary Navigation */}
-          <nav className="space-y-1 flex-1">
+          <nav className="space-y-2 flex-1">
             {navItems.map((item) => {
               const isActive = location === item.href;
               const Icon = item.icon;
@@ -255,14 +252,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
                   <button 
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
+                      "flex items-center gap-4 px-4 py-3.5 rounded-xl text-base font-medium transition-all cursor-pointer w-full",
                       isActive 
-                        ? "bg-primary/10 text-primary" 
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
-                    <Icon className="w-4 h-4 flex-shrink-0" />
-                    {!isSidebarCollapsed && <span>{item.label}</span>}
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    <span>{item.label}</span>
                   </button>
                 </Link>
               );
@@ -270,100 +267,54 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </nav>
 
           {/* Sidebar Pages Section */}
-          {!isSidebarCollapsed && (
-            <div className="space-y-1 pb-6 border-b border-border">
-              {sidebarPages.map((item) => {
-                const isActive = location === item.href;
-                const Icon = item.icon;
-                return (
-                  <Link key={item.href} href={item.href}>
-                    <button 
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
-                        isActive 
-                          ? "bg-primary/10 text-primary" 
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                      )}
-                    >
-                      <Icon className="w-4 h-4 flex-shrink-0" />
-                      <span>{item.label}</span>
-                    </button>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Leads Library Section */}
-          {!isSidebarCollapsed && (
-            <div className="space-y-2 pb-6 border-b border-border">
-              <Collapsible open={isLeadsOpen} onOpenChange={setIsLeadsOpen}>
-                <CollapsibleTrigger asChild>
-                  <button className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted w-full transition-colors">
-                    <FolderOpen className="w-4 h-4 flex-shrink-0" />
-                    <span className="flex-1 text-left">Leads Library</span>
-                    <ChevronDown className={cn("w-3 h-3 transition-transform flex-shrink-0", isLeadsOpen ? "rotate-180" : "")} />
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="space-y-1 mt-2 pl-2">
-                  {leadsExamples.map((lead, idx) => (
-                    <Link key={idx} href={`/leads/${idx}`}>
-                      <button 
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer truncate w-full text-left"
-                      >
-                        <div className="w-2 h-2 rounded-full bg-primary/40 flex-shrink-0" />
-                        <span className="truncate">{lead}</span>
-                      </button>
-                    </Link>
-                  ))}
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-          )}
-
-          {/* Settings & Profile */}
-          <div className="pt-4 border-t border-border mt-auto space-y-4">
-            {!isSidebarCollapsed ? (
-              <>
-                <Link href="/settings">
+          <div className="space-y-2 py-6 border-t border-border mt-4">
+            <p className="px-4 text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Intelligence</p>
+            {sidebarPages.map((item) => {
+              const isActive = location === item.href;
+              const Icon = item.icon;
+              return (
+                <Link key={item.href} href={item.href}>
                   <button 
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full",
-                      location === "/settings"
+                      "flex items-center gap-4 px-4 py-3 rounded-xl text-base font-medium transition-all cursor-pointer w-full",
+                      isActive 
                         ? "bg-primary/10 text-primary" 
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
-                    <Settings className="w-4 h-4 flex-shrink-0" />
-                    Settings
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    <span>{item.label}</span>
                   </button>
                 </Link>
-                <div className="flex items-center gap-3 px-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex-shrink-0" />
-                  <div className="text-xs min-w-0">
-                    <div className="font-medium truncate">Workspace Admin</div>
-                    <div className="text-muted-foreground truncate">Pro Plan</div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <Link href="/settings">
-                <button 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "flex items-center justify-center w-8 h-8 rounded-lg transition-colors",
-                    location === "/settings"
-                      ? "bg-primary/10 text-primary" 
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  )}
-                >
-                  <Settings className="w-4 h-4" />
-                </button>
-              </Link>
-            )}
+              );
+            })}
+          </div>
+
+          {/* Settings & Profile */}
+          <div className="pt-6 border-t border-border mt-auto space-y-6">
+            <Link href="/settings">
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center gap-4 px-4 py-3 rounded-xl text-base font-medium transition-all cursor-pointer w-full",
+                  location === "/settings"
+                    ? "bg-primary/10 text-primary" 
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                )}
+              >
+                <Settings className="w-5 h-5 flex-shrink-0" />
+                Settings
+              </button>
+            </Link>
+            
+            <div className="flex items-center gap-4 px-4 py-2 bg-muted/30 rounded-2xl">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex-shrink-0 border-2 border-background shadow-sm" />
+              <div className="min-w-0">
+                <div className="font-bold truncate text-foreground">Workspace Admin</div>
+                <div className="text-sm text-muted-foreground truncate font-medium">Pro Plan</div>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
