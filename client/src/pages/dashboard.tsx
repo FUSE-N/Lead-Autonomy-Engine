@@ -3,20 +3,14 @@ import { useState } from "react";
 import { Shell } from "@/components/layout/Shell";
 import { CommandInputEnhanced } from "@/components/dashboard/CommandInputEnhanced";
 import { DiscoverySnap } from "@/components/dashboard/DiscoverySnap";
+import { ProfileSnap } from "@/components/dashboard/ProfileSnap";
 import { Button } from "@/components/ui/button";
-import { Compass, User, Settings, LogOut, Shield, CreditCard } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Compass, User } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Dashboard() {
   const [isDiscoveryOpen, setIsDiscoveryOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [, setLocation] = useLocation();
 
   return (
@@ -55,51 +49,23 @@ export default function Dashboard() {
         </div>
       </Shell>
 
-      {/* Discovery Snap */}
+      {/* Snap Views */}
       <DiscoverySnap isOpen={isDiscoveryOpen} onOpenChange={setIsDiscoveryOpen} currentProgress={28} />
+      <ProfileSnap isOpen={isProfileOpen} onOpenChange={setIsProfileOpen} />
 
       {/* Floating Action Buttons - Top Area */}
       <div className="fixed top-6 left-6 md:left-auto right-6 flex items-center justify-between md:justify-end gap-3 z-40 w-[calc(100%-3rem)] md:w-auto">
         <div className="flex items-center gap-3 ml-auto">
-          {/* Profile Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button 
-                size="icon" 
-                variant="outline"
-                className="h-10 w-10 rounded-full shadow-sm hover:bg-accent flex items-center justify-center bg-background/80 backdrop-blur-sm transition-all active:scale-95"
-                title="User profile"
-              >
-                <User className="w-4 h-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 mt-2 border-border/50 shadow-xl backdrop-blur-md bg-background/95">
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">Alex Rivera</p>
-                  <p className="text-xs leading-none text-muted-foreground">alex@growth-leads.ai</p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer" onClick={() => setLocation("/settings")}>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Account Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Billing & Plans</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <Shield className="mr-2 h-4 w-4" />
-                <span>Security</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer text-destructive focus:text-destructive" onClick={() => setLocation("/auth")}>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Profile Trigger - Now opens Snap view */}
+          <Button 
+            size="icon" 
+            variant="outline"
+            onClick={() => setIsProfileOpen(true)}
+            className="h-10 w-10 rounded-full shadow-sm hover:bg-accent flex items-center justify-center bg-background/80 backdrop-blur-sm transition-all active:scale-95"
+            title="User profile"
+          >
+            <User className="w-4 h-4" />
+          </Button>
           
           {/* Discovery Button */}
           <Button 
