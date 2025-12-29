@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
+import AuthPage from "@/pages/auth";
 import Settings from "@/pages/settings";
 import SocialContent from "@/pages/social-content";
 import LeadsFolder from "@/pages/leads-folder";
@@ -16,6 +17,7 @@ import Automations from "@/pages/automations";
 function Router() {
   return (
     <Switch>
+      <Route path="/auth" component={AuthPage} />
       <Route path="/" component={Dashboard} />
       <Route path="/settings" component={Settings} />
       <Route path="/social-content" component={SocialContent} />
