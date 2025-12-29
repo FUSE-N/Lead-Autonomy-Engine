@@ -83,7 +83,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             </div>
             
             {/* Sidebar Toggle Button - Only visible when collapsed */}
-            {isSidebarCollapsed && (
+            {isSidebarCollapsed ? (
               <button 
                 onClick={toggleSidebar}
                 className="hidden lg:flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
@@ -91,7 +91,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
               >
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </button>
-            )}
+            ) : null}
           </div>
 
           {/* Primary Navigation */}

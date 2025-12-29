@@ -49,11 +49,6 @@ export default function Dashboard() {
 
       {/* Floating Action Buttons - Top Area */}
       <div className="fixed top-6 left-6 lg:left-auto right-6 flex items-center justify-between lg:justify-end gap-3 z-40 w-[calc(100%-3rem)] lg:w-auto">
-        {/* Sidebar Toggle (Only visible when expanded) */}
-        <div className="hidden lg:block">
-          {/* This logic will be handled inside Shell if we want it to float, but per request, let's keep it clean */}
-        </div>
-
         <div className="flex items-center gap-3 ml-auto">
           {/* Profile Button */}
           <Button 
