@@ -232,13 +232,13 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <span className="text-2xl font-bold font-heading tracking-tight whitespace-nowrap">Leads</span>
             </div>
             
-            {/* Close Button for Mobile */}
+            {/* Sidebar Toggle Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted transition-all duration-300 flex-shrink-0 border border-border bg-background shadow-sm"
               title="Close menu"
             >
-              <PanelRightClose className="w-5 h-5 text-muted-foreground" />
+              <PanelLeftClose className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
 
@@ -337,7 +337,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           onClick={() => setIsMobileMenuOpen(true)}
           className="md:hidden absolute top-6 left-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm"
         >
-          <Menu className="w-5 h-5" />
+          <PanelRightClose className="w-5 h-5 text-muted-foreground" />
         </button>
 
         {/* Scrollable Content Area */}
