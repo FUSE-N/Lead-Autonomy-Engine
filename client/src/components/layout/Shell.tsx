@@ -376,16 +376,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       {/* Main Content - Scrollable, Fixed Sidebar Content Space */}
       <main className={cn(
-        "flex-1 flex flex-col min-w-0 h-screen overflow-hidden",
+        "flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative",
         isSidebarCollapsed ? "lg:ml-20" : "lg:ml-64"
       )}>
-        <header className="h-16 lg:hidden flex items-center px-6 border-b border-border bg-card flex-shrink-0">
-          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(true)}>
-            <Menu className="w-5 h-5" />
-          </Button>
-          <div className="ml-4 font-bold font-heading">Leads</div>
-        </header>
-        
+        {/* Mobile menu trigger - absolute positioned since header is removed */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="lg:hidden absolute top-6 left-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
         {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-6 lg:p-10 max-w-7xl mx-auto w-full animate-in fade-in duration-500">

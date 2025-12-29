@@ -47,28 +47,35 @@ export default function Dashboard() {
       {/* Discovery Snap */}
       <DiscoverySnap isOpen={isDiscoveryOpen} onOpenChange={setIsDiscoveryOpen} currentProgress={28} />
 
-      {/* Floating Action Buttons - Top Right */}
-      <div className="fixed top-6 right-6 flex gap-3 z-40">
-        {/* Profile Button */}
-        <Button 
-          size="icon" 
-          variant="outline"
-          className="h-10 w-10 rounded-full shadow-sm hover:bg-accent"
-          title="User profile"
-        >
-          <User className="w-4 h-4" />
-        </Button>
-        
-        {/* Discovery Button */}
-        <Button 
-          size="icon" 
-          variant="default"
-          onClick={() => setIsDiscoveryOpen(true)}
-          className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
-          title="Open discovery and learning path"
-        >
-          <Compass className="w-4 h-4" />
-        </Button>
+      {/* Floating Action Buttons - Top Area */}
+      <div className="fixed top-6 left-6 lg:left-auto right-6 flex items-center justify-between lg:justify-end gap-3 z-40 w-[calc(100%-3rem)] lg:w-auto">
+        {/* Mobile Menu Toggle (Visible only on mobile) */}
+        <div className="lg:hidden">
+          {/* This will be handled by Shell's mobile drawer, but we need a trigger here if we remove header */}
+        </div>
+
+        <div className="flex items-center gap-3 ml-auto">
+          {/* Profile Button */}
+          <Button 
+            size="icon" 
+            variant="outline"
+            className="h-10 w-10 rounded-full shadow-sm hover:bg-accent flex items-center justify-center bg-background/80 backdrop-blur-sm"
+            title="User profile"
+          >
+            <User className="w-4 h-4" />
+          </Button>
+          
+          {/* Discovery Button */}
+          <Button 
+            size="icon" 
+            variant="default"
+            onClick={() => setIsDiscoveryOpen(true)}
+            className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center"
+            title="Open discovery and learning path"
+          >
+            <Compass className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
     </>
   );
