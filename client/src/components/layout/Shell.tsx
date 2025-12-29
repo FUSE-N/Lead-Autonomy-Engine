@@ -207,7 +207,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="min-h-screen flex bg-background overflow-hidden">
+    <div className="min-h-screen flex bg-background overflow-hidden relative">
+      {/* Desktop Sidebar */}
       <aside 
         className={cn(
           "fixed inset-y-0 left-0 z-50 bg-card border-r border-border transition-all duration-300 ease-in-out hidden md:flex flex-col",
@@ -217,23 +218,35 @@ export function Shell({ children }: { children: React.ReactNode }) {
         {sidebarContent}
       </aside>
 
+      {/* Mobile Sidebar - Now using Sheet for Snap View */}
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <SheetContent side="left" className="w-[300px] p-0 border-r border-border/50 shadow-2xl backdrop-blur-xl bg-background/95">
           {sidebarContent}
         </SheetContent>
       </Sheet>
 
+      {/* Main Content */}
       <main className={cn(
         "flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative transition-all duration-300",
         isSidebarCollapsed ? "md:ml-20" : "md:ml-64"
       )}>
-        <button 
-          onClick={() => setIsMobileMenuOpen(true)}
-          className="md:hidden absolute top-6 left-6 z-40 w-10 h-10 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-sm active:scale-95 transition-transform"
-        >
-          <Menu className="w-5 h-5 text-muted-foreground" />
-        </button>
+        {/* Navigation Header for Mobile/Tablet - Non-floating to prevent overlap */}
+        <header className="md:hidden flex items-center h-16 px-6 border-b border-border bg-background/80 backdrop-blur-md z-40 shrink-0">
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-accent transition-all active:scale-95"
+          >
+            <PanelRightClose className="w-5 h-5 text-muted-foreground rotate-180" />
+          </button>
+          <div className="ml-4 flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
+              <Bot className="w-4 h-4" />
+            </div>
+            <span className="font-bold font-heading tracking-tight">Leads</span>
+          </div>
+        </header>
 
+        {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-6 lg:p-10 max-w-7xl mx-auto w-full animate-in fade-in duration-500">
             {children}
