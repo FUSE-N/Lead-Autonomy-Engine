@@ -1,8 +1,9 @@
+import * as React from "react";
+import { useState } from "react";
 import { Shell } from "@/components/layout/Shell";
 import { CommandInputEnhanced } from "@/components/dashboard/CommandInputEnhanced";
 import { DiscoverySnap } from "@/components/dashboard/DiscoverySnap";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Compass, User, Settings, LogOut, Shield, CreditCard } from "lucide-react";
 import {
   DropdownMenu,
