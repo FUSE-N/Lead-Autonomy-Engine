@@ -1,26 +1,44 @@
 import * as React from "react";
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, Mail, Lock, ArrowRight, Github } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertUserSchema, InsertUser } from "@shared/schema";
 
 export default function AuthPage() {
   const [, setLocation] = useLocation();
+  const { user, loginMutation, registerMutation } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    // Mock authentication delay
-    setTimeout(() => {
-      setIsLoading(false);
+  const form = useForm<InsertUser>({
+    resolver: zodResolver(insertUserSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
+
+  React.useEffect(() => {
+    if (user) {
       setLocation("/");
-    }, 1500);
+    }
+  }, [user, setLocation]);
+
+  const onSubmit = (data: InsertUser) => {
+    if (isLogin) {
+      loginMutation.mutate(data);
+    } else {
+      registerMutation.mutate(data);
+    }
   };
+
+  const isLoading = loginMutation.isPending || registerMutation.isPending;
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-background p-4 relative overflow-hidden">
@@ -41,24 +59,25 @@ export default function AuthPage() {
             {isLogin ? "Welcome back" : "Create an account"}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            {isLogin 
-              ? "Enter your credentials to access your leads dashboard" 
-              : "Start your 14-day free trial. No credit card required."}
+            {isLogin
+              ? "Enter your credentials to access your leads dashboard"
+              : "Start your journey with Lead Autonomy Engine."}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="John Doe" required className="bg-background/50" />
-              </div>
-            )}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="username">Username (Email)</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input id="email" type="email" placeholder="name@company.com" required className="pl-10 bg-background/50" />
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="name@company.com"
+                  {...form.register("username")}
+                  required
+                  className="pl-10 bg-background/50"
+                />
               </div>
             </div>
             <div className="space-y-2">
@@ -72,7 +91,13 @@ export default function AuthPage() {
               </div>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input id="password" type="password" required className="pl-10 bg-background/50" />
+                <Input
+                  id="password"
+                  type="password"
+                  {...form.register("password")}
+                  required
+                  className="pl-10 bg-background/50"
+                />
               </div>
             </div>
             <Button type="submit" className="w-full h-11 text-base font-medium" disabled={isLoading}>
@@ -100,7 +125,7 @@ export default function AuthPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-3">
-            <Button variant="outline" className="w-full bg-background/50" onClick={handleSubmit}>
+            <Button variant="outline" className="w-full bg-background/50" disabled>
               <Github className="mr-2 h-4 w-4" />
               GitHub
             </Button>
@@ -109,7 +134,7 @@ export default function AuthPage() {
         <CardFooter className="flex flex-col space-y-4">
           <div className="text-sm text-center text-muted-foreground">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-            <button 
+            <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-primary font-medium hover:underline"
             >

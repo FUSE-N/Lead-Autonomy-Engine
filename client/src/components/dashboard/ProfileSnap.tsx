@@ -1,19 +1,19 @@
 import * as React from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
-import { 
-  User, 
-  Settings, 
-  LogOut, 
-  Shield, 
-  CreditCard, 
+import {
+  User as UserIcon,
+  Settings,
+  LogOut,
+  Shield,
+  CreditCard,
   Mail,
   Bell,
   HelpCircle,
   ExternalLink
 } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
 
 export function ProfileSnap({
   isOpen,
@@ -23,6 +23,13 @@ export function ProfileSnap({
   onOpenChange: (open: boolean) => void;
 }) {
   const [, setLocation] = useLocation();
+  const { user, logoutMutation } = useAuth();
+
+  const handleLogout = async () => {
+    await logoutMutation.mutateAsync();
+    onOpenChange(false);
+    setLocation("/");
+  };
 
   const menuGroups = [
     {
@@ -43,19 +50,21 @@ export function ProfileSnap({
     }
   ];
 
+  if (!user) return null;
+
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:w-[400px] p-0 flex flex-col border-l border-border/50 shadow-2xl backdrop-blur-xl bg-background/95">
         <SheetHeader className="px-6 pt-10 pb-6 bg-muted/30 border-b border-border/50">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/20">
-              <User className="w-8 h-8" />
+              <UserIcon className="w-8 h-8" />
             </div>
             <div className="flex flex-col">
-              <SheetTitle className="text-xl font-heading">Alex Rivera</SheetTitle>
+              <SheetTitle className="text-xl font-heading truncate max-w-[200px]">{user.username}</SheetTitle>
               <div className="flex items-center gap-1.5 text-muted-foreground">
                 <Mail className="w-3.5 h-3.5" />
-                <span className="text-sm">alex@growth-leads.ai</span>
+                <span className="text-sm truncate max-w-[200px]">{user.username}</span>
               </div>
             </div>
           </div>
@@ -89,16 +98,16 @@ export function ProfileSnap({
         </div>
 
         <div className="mt-auto border-t border-border/50 p-6 bg-muted/20">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 rounded-xl py-6"
-            onClick={() => {
-              setLocation("/auth");
-              onOpenChange(false);
-            }}
+            onClick={handleLogout}
+            disabled={logoutMutation.isPending}
           >
             <LogOut className="mr-3 h-5 w-5" />
-            <span className="font-semibold text-base">Log out</span>
+            <span className="font-semibold text-base">
+              {logoutMutation.isPending ? "Logging out..." : "Log out"}
+            </span>
           </Button>
           <p className="text-[10px] text-center text-muted-foreground mt-4 font-medium uppercase tracking-widest opacity-40">
             Growth OS v2.4.0

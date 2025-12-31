@@ -4,14 +4,18 @@ import { Shell } from "@/components/layout/Shell";
 import { CommandInputEnhanced } from "@/components/dashboard/CommandInputEnhanced";
 import { DiscoverySnap } from "@/components/dashboard/DiscoverySnap";
 import { ProfileSnap } from "@/components/dashboard/ProfileSnap";
+import { WorkflowVisualizer } from "@/components/dashboard/WorkflowVisualizer";
 import { Button } from "@/components/ui/button";
 import { Compass, User } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Dashboard() {
   const [isDiscoveryOpen, setIsDiscoveryOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [activeMissionId, setActiveMissionId] = useState<string | null>(null);
   const [, setLocation] = useLocation();
+  const { user } = useAuth();
 
   return (
     <>
@@ -21,7 +25,7 @@ export default function Dashboard() {
           <div className="space-y-8 text-center">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold text-foreground font-heading tracking-tight">
-                Welcome back
+                Welcome back{user ? `, ${user.username.split('@')[0]}` : ""}
               </h1>
               <h2 className="text-3xl md:text-4xl font-semibold text-primary font-heading">
                 What's our mission today?
@@ -33,8 +37,15 @@ export default function Dashboard() {
 
             {/* Primary Command Input - Clean Focus */}
             <div className="pt-8">
-              <CommandInputEnhanced onSend={(val) => console.log(val)} />
+              <CommandInputEnhanced onMissionStarted={(id) => setActiveMissionId(id)} />
             </div>
+
+            {/* Workflow Visualizer - Show when active */}
+            {activeMissionId && (
+              <div className="pt-8">
+                <WorkflowVisualizer missionId={activeMissionId} />
+              </div>
+            )}
 
             {/* Quick Navigation Hints */}
             <div className="pt-12 border-t border-border/50">
@@ -57,8 +68,8 @@ export default function Dashboard() {
       <div className="fixed top-6 left-6 md:left-auto right-6 flex items-center justify-between md:justify-end gap-3 z-40 w-[calc(100%-3rem)] md:w-auto">
         <div className="flex items-center gap-3 ml-auto">
           {/* Profile Trigger - Now opens Snap view */}
-          <Button 
-            size="icon" 
+          <Button
+            size="icon"
             variant="outline"
             onClick={() => setIsProfileOpen(true)}
             className="h-10 w-10 rounded-full shadow-sm hover:bg-accent flex items-center justify-center bg-background/80 backdrop-blur-sm transition-all active:scale-95"
@@ -66,10 +77,10 @@ export default function Dashboard() {
           >
             <User className="w-4 h-4" />
           </Button>
-          
+
           {/* Discovery Button */}
-          <Button 
-            size="icon" 
+          <Button
+            size="icon"
             variant="default"
             onClick={() => setIsDiscoveryOpen(true)}
             className="h-10 w-10 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90 flex items-center justify-center transition-all active:scale-95"

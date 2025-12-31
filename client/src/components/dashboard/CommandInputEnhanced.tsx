@@ -4,11 +4,14 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
-export function CommandInputEnhanced({ 
-  onSend 
-}: { 
-  onSend?: (value: string) => void 
+import { useMissions } from "@/hooks/use-missions";
+
+export function CommandInputEnhanced({
+  onMissionStarted
+}: {
+  onMissionStarted?: (id: string) => void
 }) {
+  const { startMission } = useMissions();
   const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [attachedFiles, setAttachedFiles] = useState<string[]>([]);
@@ -16,12 +19,17 @@ export function CommandInputEnhanced({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
-      onSend?.(value);
-      setValue("");
-      setAttachedFiles([]);
+      try {
+        const mission = await startMission.mutateAsync(value);
+        onMissionStarted?.(mission.id);
+        setValue("");
+        setAttachedFiles([]);
+      } catch (error) {
+        console.error("Failed to start mission", error);
+      }
     }
   };
 
@@ -65,7 +73,7 @@ export function CommandInputEnhanced({
 
   return (
     <div className="w-full max-w-3xl mx-auto relative">
-      <div 
+      <div
         className={cn(
           "relative bg-card rounded-2xl shadow-sm border border-border transition-all duration-300 overflow-hidden",
           isFocused ? "shadow-md ring-2 ring-primary/20 border-primary" : "shadow-sm"
@@ -109,12 +117,12 @@ export function CommandInputEnhanced({
               style={{ outline: 'none' }}
             />
           </div>
-          
+
           <div className="flex flex-col md:flex-row md:items-center justify-between px-4 pb-4 gap-4">
             <div className="flex items-center gap-1 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-              <Button 
-                type="button" 
-                variant="ghost" 
+              <Button
+                type="button"
+                variant="ghost"
                 size="sm"
                 onClick={() => fileInputRef.current?.click()}
                 className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-[10px] md:text-xs flex-shrink-0"
@@ -124,15 +132,15 @@ export function CommandInputEnhanced({
                 Attach
               </Button>
 
-              <Button 
-                type="button" 
-                variant="ghost" 
+              <Button
+                type="button"
+                variant="ghost"
                 size="sm"
                 onClick={handleVoiceRecord}
                 className={cn(
                   "rounded-full h-8 px-3 text-[10px] md:text-xs transition-colors flex-shrink-0",
-                  isRecording 
-                    ? "text-destructive hover:bg-destructive/10" 
+                  isRecording
+                    ? "text-destructive hover:bg-destructive/10"
                     : "text-muted-foreground hover:text-primary hover:bg-primary/10"
                 )}
                 title="Record voice message"
@@ -141,9 +149,9 @@ export function CommandInputEnhanced({
                 {isRecording ? "Stop" : "Voice"}
               </Button>
 
-              <Button 
-                type="button" 
-                variant="ghost" 
+              <Button
+                type="button"
+                variant="ghost"
                 size="sm"
                 className="text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full h-8 px-3 text-[10px] md:text-xs flex-shrink-0"
               >
@@ -160,9 +168,9 @@ export function CommandInputEnhanced({
                 className="hidden"
               />
             </div>
-            
-            <Button 
-              type="submit" 
+
+            <Button
+              type="submit"
               disabled={!value.trim()}
               className={cn(
                 "rounded-xl transition-all duration-300 w-full md:w-auto",
@@ -175,7 +183,7 @@ export function CommandInputEnhanced({
           </div>
         </form>
       </div>
-      
+
       {/* Abstract decorative glow */}
       <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-blue-400/20 to-teal-400/20 rounded-3xl blur-2xl -z-10 opacity-50" />
     </div>
